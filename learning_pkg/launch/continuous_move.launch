@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<launch>
+
+    <arg name="robot_name" default="my_gen3"/>
+    
+    <include file="$(find rokubimini_ethercat)/launch/rokubimini_ethercat.launch">   
+    </include>
+    
+    <!--include file="$(find learning_pkg)/launch/kortex_driver.launch">-->
+    <!--</include>-->
+    <!--node pkg="rokubimini_ethercat" type="rokubimini_ethercat.launch" name="sensor" output="screen"-->
+    <!--/node-->
+    <arg name="node_start_delay" default="3.0" /> 
+
+    <node pkg="learning_pkg" type="action_continuous_move.py" name="action_continuous_move" output="screen" >
+    </node>
+
+    <node pkg="learning_pkg" type="action_mean.py" name="action_mean" output="screen" launch-prefix="bash -c 'sleep $(arg node_start_delay); $0 $@' ">
+    </node>
+
+    <node pkg="learning_pkg" type="service_sensor_mean.py" name="service_sensor_mean" output="screen" launch-prefix="bash -c 'sleep $(arg node_start_delay); $0 $@' ">
+    </node>
+    
+    <node pkg="learning_pkg" type="continuous_move.py" name="continuous_move" output="screen"   launch-prefix="bash -c 'sleep $(arg node_start_delay); $0 $@' ">
+    </node>
+
+</launch>

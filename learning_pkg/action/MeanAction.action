@@ -1,0 +1,8 @@
+#goal
+float64 mean_diff_goal
+---
+#result
+bool success
+---
+#feedback
+float64 current_mean_diff

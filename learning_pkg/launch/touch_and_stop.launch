@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<launch>
+
+    <arg name="robot_name" default="my_gen3"/>
+    
+    <include file="$(find rokubimini_ethercat)/launch/rokubimini_ethercat.launch">   
+    </include>
+    
+    <!--include file="$(find learning_pkg)/launch/kortex_driver.launch">-->
+    <!--</include>-->
+    <!--node pkg="rokubimini_ethercat" type="rokubimini_ethercat.launch" name="sensor" output="screen"-->
+    <!--/node-->
+    <arg name="node_start_delay" default="3.0" /> 
+    <node pkg="learning_pkg" type="touch_and_stop.py" name="touch_and_stop" output="screen" >
+    </node>
+
+    <node pkg="learning_pkg" type="service_sensor_mean.py" name="service_sensor_mean" output="screen" launch-prefix="bash -c 'sleep $(arg node_start_delay); $0 $@' ">
+    </node>
+    
+    <node pkg="learning_pkg" type="service_move_command.py" name="service_move_command" output="screen" launch-prefix="bash -c 'sleep $(arg node_start_delay); $0 $@' ">
+    </node>
+
+</launch>

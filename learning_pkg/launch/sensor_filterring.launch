@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<launch>
+
+    <include file="$(find rokubimini_ethercat)/launch/rokubimini_ethercat.launch">   
+    </include>
+    <!--node pkg="rokubimini_ethercat" type="rokubimini_ethercat.launch" name="sensor" output="screen"-->
+    <!--/node-->
+    <arg name="node_start_delay" default="3.0" /> 
+    <node pkg="learning_pkg" type="sensor_fft_try.py" name="get_data" output="screen" launch-prefix="bash -c 'sleep $(arg node_start_delay); $0 $@' " >
+    </node>
+
+</launch>

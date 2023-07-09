@@ -1,0 +1,4 @@
+#float[] duration 
+int32 command #the number of the command
+---
+bool success      # Did it achieve it?

@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<launch>
+
+    <include file="$(find learning_pkg)/launch/bringup_tbsim.launch">   
+        <arg name="name" value="turtle1"/>
+        <arg name="keyboard_name" value="keyboard1"/>
+        <arg name="vel_topic" value="vel1"/>
+        
+    </include>
+
+
+</launch>
